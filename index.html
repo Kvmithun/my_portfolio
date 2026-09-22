@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mithun KV — AI/ML Engineer</title>
+<meta name="description" content="Mithun KV — AI/ML Engineer building end-to-end systems across machine learning, generative AI, RAG, and MLOps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg: #0B0E14;
+  --bg-panel: #10141D;
+  --bg-panel-2: #151B27;
+  --bg-raised: #1A2130;
+  --border: rgba(233,235,244,0.09);
+  --border-strong: rgba(233,235,244,0.16);
+  --text: #E9EBF2;
+  --text-muted: #9199AF;
+  --text-faint: #5F6880;
+  --accent: #F2A93B;
+  --accent-dim: rgba(242,169,59,0.14);
+  --accent-2: #7C93FF;
+  --accent-2-dim: rgba(124,147,255,0.14);
+  --accent-3: #5FD4A0;
+  --accent-3-dim: rgba(95,212,160,0.14);
+  --danger: #E8735F;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --font-head: 'Archivo', sans-serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --shadow-soft: 0 20px 60px -30px rgba(0,0,0,0.7);
+  color-scheme: dark;
+}
+:root[data-theme="light"]{
+  --bg: #F7F6F2;
+  --bg-panel: #FFFFFF;
+  --bg-panel-2: #F0EFE9;
+  --bg-raised: #FFFFFF;
+  --border: rgba(20,22,30,0.10);
+  --border-strong: rgba(20,22,30,0.20);
+  --text: #171A22;
+  --text-muted: #565F72;
+  --text-faint: #8991A3;
+  --accent: #B8791E;
+  --accent-dim: rgba(184,121,30,0.10);
+  --accent-2: #4757C4;
+  --accent-2-dim: rgba(71,87,196,0.10);
+  --accent-3: #2E9A6E;
+  --accent-3-dim: rgba(46,154,110,0.10);
+  --shadow-soft: 0 20px 60px -30px rgba(20,22,30,0.25);
+  color-scheme: light;
+}
+*{box-sizing:border-box;}
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top: calc(76px + env(safe-area-inset-top,0px));
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.6;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  -webkit-font-smoothing:antialiased;
+  transition:background .3s ease, color .3s ease;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+@media (max-width:640px){.wrap{padding:0 20px;}}
+
+h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;margin:0;letter-spacing:-0.01em;}
+p{margin:0;}
+.mono{font-family:var(--font-mono);}
+
+/* ============ SECTION SCAFFOLD ============ */
+section{padding:112px 0;position:relative;}
+@media (max-width:900px){section{padding:76px 0;}}
+.section-head{max-width:640px;margin-bottom:56px;}
+.section-kicker{
+  font-family:var(--font-mono);
+  font-size:13px;
+  color:var(--accent);
+  margin-bottom:14px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-kicker::before{content:"";width:22px;height:1px;background:var(--accent);display:inline-block;}
+.section-title{font-size:clamp(28px,3.6vw,42px);line-height:1.15;}
+.section-sub{color:var(--text-muted);margin-top:16px;font-size:17px;max-width:56ch;}
+.divider{height:1px;background:var(--border);width:100%;}
+
+/* ============ NAV ============ */
+#site-nav{
+  position:sticky;top:0;z-index:100;
+  padding-top:env(safe-area-inset-top,0px);
+  background:color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:1180px;margin:0 auto;padding:16px 28px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+@media (max-width:640px){.nav-inner{padding:14px 20px;}}
+.nav-brand{font-family:var(--font-head);font-weight:700;font-size:17px;letter-spacing:-0.01em;display:flex;align-items:center;gap:10px;}
+.nav-brand .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-dim);}
+.nav-links{display:flex;gap:30px;list-style:none;margin:0;padding:0;}
+.nav-links a{font-size:14.5px;color:var(--text-muted);transition:color .2s ease;position:relative;}
+.nav-links a:hover, .nav-links a:focus-visible{color:var(--text);}
+.nav-actions{display:flex;align-items:center;gap:10px;}
+.icon-btn{
+  width:38px;height:38px;border-radius:var(--radius-sm);
+  border:1px solid var(--border);background:transparent;color:var(--text-muted);
+  display:flex;align-items:center;justify-content:center;transition:.2s ease;
+}
+.icon-btn:hover{color:var(--text);border-color:var(--border-strong);background:var(--bg-panel-2);}
+.nav-toggle{display:none;}
+@media (max-width:860px){
+  .nav-links{
+    position:fixed;inset:0;top:calc(66px + env(safe-area-inset-top,0px));
+    background:var(--bg);flex-direction:column;padding:32px 28px;gap:6px;
+    transform:translateX(100%);transition:transform .3s ease;
+    border-top:1px solid var(--border);
+  }
+  .nav-links.open{transform:translateX(0);}
+  .nav-links a{padding:14px 4px;border-bottom:1px solid var(--border);font-size:17px;}
+  .nav-toggle{display:flex;}
+}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 22px;border-radius:var(--radius-sm);font-size:14.5px;font-weight:600;
+  border:1px solid transparent;transition:.2s ease;white-space:nowrap;
+}
+.btn-primary{background:var(--accent);color:#1A1000;}
+.btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px);}
+.btn-outline{border-color:var(--border-strong);color:var(--text);background:transparent;}
+.btn-outline:hover{background:var(--bg-panel-2);border-color:var(--text-faint);}
+.btn-ghost{color:var(--text-muted);background:transparent;}
+.btn-ghost:hover{color:var(--text);}
+.btn-sm{padding:9px 16px;font-size:13.5px;}
+
+/* ============ HERO ============ */
+#hero{padding-top:76px;padding-bottom:96px;overflow:hidden;}
+.hero-grid{
+  display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;
+}
+@media (max-width:940px){.hero-grid{grid-template-columns:1fr;gap:48px;}}
+.hero-eyebrow{
+  font-family:var(--font-mono);font-size:13.5px;color:var(--text-muted);
+  display:flex;align-items:center;gap:10px;margin-bottom:22px;
+}
+.hero-eyebrow .pulse{
+  width:7px;height:7px;border-radius:50%;background:var(--accent-3);
+  box-shadow:0 0 0 0 rgba(95,212,160,0.6);animation:pulse 2.2s infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(95,212,160,0.5);}
+  70%{box-shadow:0 0 0 8px rgba(95,212,160,0);}
+  100%{box-shadow:0 0 0 0 rgba(95,212,160,0);}
+}
+.hero-name{font-size:clamp(42px,6.4vw,74px);line-height:1.02;margin-bottom:18px;}
+.hero-role{
+  font-size:clamp(15px,1.7vw,18px);font-weight:600;color:var(--accent);
+  letter-spacing:0.02em;margin-bottom:10px;
+}
+.hero-stack{
+  font-size:clamp(13px,1.4vw,15px);color:var(--text-muted);font-family:var(--font-mono);
+  margin-bottom:28px;
+}
+.hero-intro{font-size:17.5px;color:var(--text-muted);max-width:52ch;margin-bottom:36px;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;}
+.hero-visual{position:relative;aspect-ratio:1/1;max-width:480px;margin:0 auto;width:100%;}
+.hero-visual svg{width:100%;height:100%;}
+
+/* ============ CHIPS / TAGS ============ */
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 13px;border-radius:100px;font-size:13px;font-family:var(--font-mono);
+  border:1px solid var(--border-strong);color:var(--text-muted);background:var(--bg-panel-2);
+  transition:.18s ease;
+}
+.chip-btn{cursor:pointer;}
+.chip-btn:hover{color:var(--text);border-color:var(--text-faint);}
+.chip.active{background:var(--accent-dim);border-color:var(--accent);color:var(--accent);}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+@media (max-width:900px){.about-grid{grid-template-columns:1fr;gap:44px;}}
+.philosophy-card{
+  border:1px solid var(--border-strong);border-left:3px solid var(--accent);
+  border-radius:var(--radius-md);padding:28px 30px;background:var(--bg-panel);
+  font-family:var(--font-head);font-size:clamp(19px,2vw,23px);line-height:1.4;
+  margin-bottom:28px;
+}
+.about-body p{color:var(--text-muted);margin-bottom:16px;font-size:16px;}
+.about-body p:last-child{margin-bottom:0;}
+.focus-list{list-style:none;margin:24px 0 0;padding:0;display:flex;flex-direction:column;gap:10px;}
+.focus-list li{
+  display:flex;gap:12px;align-items:baseline;color:var(--text-muted);font-size:15px;
+  padding-bottom:10px;border-bottom:1px solid var(--border);
+}
+.focus-list li:last-child{border-bottom:none;}
+.focus-list b{color:var(--text);font-weight:600;min-width:120px;font-family:var(--font-mono);font-size:13.5px;}
+.edu-line{
+  margin-top:28px;padding-top:24px;border-top:1px solid var(--border);
+  display:flex;flex-direction:column;gap:4px;
+}
+.edu-line .school{font-weight:700;font-family:var(--font-head);font-size:16.5px;}
+.edu-line .meta{color:var(--text-muted);font-size:14.5px;}
+.about-photo-card{
+  border:1px solid var(--border-strong);border-radius:var(--radius-md);overflow:hidden;
+  background:var(--bg-panel);max-width:230px;margin-bottom:30px;position:relative;
+}
+.about-photo-card img{width:100%;display:block;filter:grayscale(55%) contrast(1.04);transition:filter .5s ease;}
+.about-photo-card:hover img{filter:grayscale(0%) contrast(1.02);}
+.about-photo-tag{
+  font-family:var(--font-mono);font-size:11px;color:var(--text-faint);
+  padding:10px 13px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:8px;
+}
+.about-photo-tag .pulse{width:6px;height:6px;border-radius:50%;background:var(--accent-3);flex-shrink:0;
+  box-shadow:0 0 0 0 rgba(95,212,160,0.6);animation:pulse 2.2s infinite;}
+
+/* ============ JOURNEY TIMELINE ============ */
+.journey-track{position:relative;padding-top:6px;}
+.journey-stage{margin-bottom:44px;}
+.journey-stage:last-child{margin-bottom:0;}
+.stage-label{
+  font-family:var(--font-mono);font-size:13px;color:var(--text-faint);
+  margin-bottom:16px;display:flex;align-items:center;gap:10px;
+}
+.stage-num{color:var(--accent);}
+.stage-items{display:flex;flex-wrap:wrap;gap:10px;position:relative;}
+.jitem{
+  display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:var(--radius-sm);
+  border:1px solid var(--border);background:var(--bg-panel);font-size:14px;color:var(--text-muted);
+}
+.jitem.current{border-color:var(--accent);color:var(--text);background:var(--accent-dim);}
+.jitem .cdot{width:6px;height:6px;border-radius:50%;background:var(--accent-3);flex-shrink:0;}
+.jitem:not(.current) .cdot{display:none;}
+.jarrow{color:var(--text-faint);font-size:14px;align-self:center;}
+
+/* ============ FEATURED PROJECTS ============ */
+.feature-block{
+  display:grid;grid-template-columns:1fr 1fr;gap:52px;
+  padding:56px 0;border-top:1px solid var(--border);align-items:start;
+}
+.feature-block:first-of-type{border-top:none;}
+@media (max-width:900px){.feature-block{grid-template-columns:1fr;gap:28px;}}
+.feature-index{font-family:var(--font-mono);color:var(--text-faint);font-size:13px;margin-bottom:14px;}
+.feature-name{font-size:clamp(24px,2.6vw,32px);margin-bottom:10px;}
+.feature-cat{font-family:var(--font-mono);font-size:12.5px;color:var(--accent-2);margin-bottom:20px;display:block;}
+.feature-desc{color:var(--text-muted);margin-bottom:22px;font-size:15.5px;}
+.feature-note{
+  font-size:13.5px;color:var(--accent);background:var(--accent-dim);
+  border:1px solid rgba(242,169,59,0.3);padding:10px 14px;border-radius:var(--radius-sm);
+  margin-bottom:22px;display:flex;gap:8px;
+}
+.feature-links{display:flex;gap:12px;flex-wrap:wrap;}
+.feature-panel{
+  border:1px solid var(--border);border-radius:var(--radius-md);background:var(--bg-panel);overflow:hidden;
+}
+.fp-head{
+  padding:14px 20px;border-bottom:1px solid var(--border);font-family:var(--font-mono);
+  font-size:12.5px;color:var(--text-faint);display:flex;justify-content:space-between;
+}
+.fp-flow{padding:22px 20px;display:flex;flex-direction:column;}
+.flow-step{
+  display:flex;align-items:flex-start;gap:14px;padding:9px 0;font-size:13.5px;color:var(--text-muted);
+}
+.flow-step .fs-dot{
+  width:8px;height:8px;border-radius:50%;background:var(--bg-raised);border:1px solid var(--border-strong);
+  margin-top:5px;flex-shrink:0;
+}
+.flow-step:not(:last-child){position:relative;}
+.flow-step:not(:last-child)::after{
+  content:"";position:absolute;left:3.5px;top:20px;bottom:-9px;width:1px;background:var(--border);
+}
+.fp-tech{padding:16px 20px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:8px;}
+
+/* ============ EXPLORER ============ */
+.explorer-filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;}
+.filter-btn{
+  padding:9px 18px;border-radius:100px;border:1px solid var(--border-strong);
+  background:transparent;color:var(--text-muted);font-size:13.5px;transition:.18s ease;
+}
+.filter-btn:hover{color:var(--text);}
+.filter-btn.active{background:var(--text);color:var(--bg);border-color:var(--text);}
+.explorer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+@media (max-width:940px){.explorer-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:640px){.explorer-grid{grid-template-columns:1fr;}}
+.pcard{
+  border:1px solid var(--border);border-radius:var(--radius-md);background:var(--bg-panel);
+  padding:22px;cursor:pointer;transition:.2s ease;display:flex;flex-direction:column;height:100%;
+  text-align:left;color:inherit;
+}
+.pcard:hover{border-color:var(--border-strong);transform:translateY(-2px);background:var(--bg-panel-2);}
+.pcard-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:10px;}
+.pcard-cat{font-family:var(--font-mono);font-size:11px;color:var(--accent-2);}
+.pcard-name{font-family:var(--font-head);font-size:17.5px;font-weight:700;margin-bottom:8px;}
+.pcard-desc{font-size:14px;color:var(--text-muted);flex-grow:1;margin-bottom:16px;line-height:1.55;}
+.pcard-tech{display:flex;flex-wrap:wrap;gap:6px;}
+.pcard-tech span{font-size:11px;font-family:var(--font-mono);color:var(--text-faint);}
+.pcard-status{font-size:11px;color:var(--accent-3);font-family:var(--font-mono);margin-top:12px;}
+.explorer-empty{color:var(--text-faint);padding:40px 0;text-align:center;font-size:14.5px;}
+
+/* ============ MODAL ============ */
+#modal-overlay{
+  position:fixed;inset:0;background:rgba(4,5,8,0.72);backdrop-filter:blur(3px);
+  z-index:200;display:none;align-items:flex-start;justify-content:center;
+  padding:40px 20px;overflow-y:auto;
+}
+#modal-overlay.open{display:flex;}
+.modal{
+  background:var(--bg-panel);border:1px solid var(--border-strong);border-radius:var(--radius-lg);
+  max-width:680px;width:100%;padding:38px;position:relative;box-shadow:var(--shadow-soft);
+  margin:auto 0;
+}
+.modal-close{
+  position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;
+  border:1px solid var(--border-strong);background:var(--bg-panel-2);color:var(--text-muted);
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.modal-close:hover{color:var(--text);}
+.modal h3{font-size:24px;margin-bottom:6px;padding-right:40px;}
+.modal .m-cat{font-family:var(--font-mono);font-size:12px;color:var(--accent-2);margin-bottom:20px;display:block;}
+.modal-section{margin-top:22px;}
+.modal-section h4{font-size:13px;font-family:var(--font-mono);color:var(--text-faint);margin-bottom:10px;text-transform:none;}
+.modal-section p{color:var(--text-muted);font-size:15px;line-height:1.6;}
+.modal-flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.modal-flow span{font-size:13px;color:var(--text-muted);}
+.modal-flow .arrow{color:var(--text-faint);}
+.modal-feat-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;}
+.modal-feat-list li{font-size:14px;color:var(--text-muted);display:flex;gap:8px;}
+.modal-feat-list li::before{content:"—";color:var(--text-faint);}
+.modal-actions{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;}
+
+/* ============ SKILLS ============ */
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+@media (max-width:760px){.skills-grid{grid-template-columns:1fr;}}
+.skill-domain{
+  border:1px solid var(--border);border-radius:var(--radius-md);padding:22px 24px;background:var(--bg-panel);
+}
+.skill-domain h4{font-family:var(--font-mono);font-size:13px;color:var(--text-faint);margin-bottom:14px;font-weight:500;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
+#skill-filter-banner{
+  display:none;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  background:var(--accent-dim);border:1px solid rgba(242,169,59,0.35);border-radius:var(--radius-sm);
+  padding:12px 18px;margin-bottom:20px;font-size:14px;color:var(--accent);
+}
+#skill-filter-banner.show{display:flex;}
+
+/* ============ GENAI HUB ============ */
+.hub-wrap{position:relative;display:flex;flex-direction:column;align-items:center;gap:0;}
+.hub-center{
+  border:1px solid var(--accent);background:var(--accent-dim);border-radius:var(--radius-lg);
+  padding:20px 30px;font-family:var(--font-head);font-weight:700;font-size:16px;text-align:center;
+  margin-bottom:0;position:relative;z-index:2;
+}
+.hub-clusters{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px;position:relative;width:100%;
+}
+@media (max-width:900px){.hub-clusters{grid-template-columns:repeat(2,1fr);}}
+.hub-clusters::before{
+  content:"";position:absolute;top:-36px;left:50%;width:1px;height:36px;background:var(--border-strong);
+}
+.cluster{
+  border:1px solid var(--border);border-radius:var(--radius-md);background:var(--bg-panel);padding:18px;
+  position:relative;
+}
+.cluster::before{
+  content:"";position:absolute;top:-18px;left:50%;width:1px;height:18px;background:var(--border);
+}
+.cluster h5{font-size:13.5px;font-family:var(--font-mono);color:var(--accent-2);margin-bottom:12px;}
+.cluster .skill-tags{gap:6px;}
+.cluster .chip{font-size:12px;padding:5px 11px;}
+
+/* ============ MLOPS PIPELINE ============ */
+.pipeline-scroll{overflow-x:auto;padding-bottom:8px;margin:0 -28px;padding-left:28px;padding-right:28px;}
+@media (max-width:640px){.pipeline-scroll{margin:0 -20px;padding-left:20px;padding-right:20px;}}
+.pipeline{display:flex;gap:0;min-width:max-content;}
+.pstage{
+  display:flex;flex-direction:column;align-items:center;text-align:center;width:160px;flex-shrink:0;position:relative;
+}
+.pstage .ps-node{
+  width:100%;border:1px solid var(--border-strong);background:var(--bg-panel);border-radius:var(--radius-sm);
+  padding:16px 10px;font-size:13.5px;font-weight:600;font-family:var(--font-head);margin-bottom:10px;
+}
+.pstage .ps-tech{font-size:11px;color:var(--text-faint);font-family:var(--font-mono);min-height:16px;}
+.pconnector{width:36px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--text-faint);margin-top:0;padding-top:0;align-self:flex-start;margin-top:24px;}
+.pipeline-examples{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;}
+
+/* ============ ARCHITECTURE ============ */
+.arch-grid{display:grid;grid-template-columns:1fr;gap:20px;}
+.arch-card{border:1px solid var(--border);border-radius:var(--radius-md);background:var(--bg-panel);padding:28px;}
+.arch-card h4{font-size:19px;margin-bottom:4px;}
+.arch-card .arch-sub{color:var(--text-faint);font-size:13.5px;font-family:var(--font-mono);margin-bottom:22px;display:block;}
+.arch-steps{display:flex;flex-wrap:wrap;gap:10px;}
+.arch-step{
+  padding:11px 16px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--bg-panel-2);
+  font-size:13.5px;color:var(--text-muted);transition:.18s ease;
+}
+.arch-step:hover, .arch-step.open{border-color:var(--accent-2);color:var(--text);background:var(--accent-2-dim);}
+.arch-detail{
+  margin-top:16px;padding:16px 18px;border-radius:var(--radius-sm);background:var(--bg-panel-2);
+  border-left:2px solid var(--accent-2);font-size:14px;color:var(--text-muted);display:none;
+}
+.arch-detail.show{display:block;}
+
+/* ============ ACHIEVEMENTS / EDU ============ */
+.ach-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+@media (max-width:700px){.ach-grid{grid-template-columns:1fr;}}
+.ach-card{
+  border:1px solid var(--border);border-radius:var(--radius-md);padding:26px;background:var(--bg-panel);
+  display:flex;flex-direction:column;gap:10px;
+}
+.ach-card .ach-rank{font-family:var(--font-head);font-size:26px;color:var(--accent);}
+.ach-card p{color:var(--text-muted);font-size:14.5px;}
+
+/* ============ RESUME ============ */
+.resume-panel{
+  border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--bg-panel);
+  padding:44px;display:flex;flex-direction:column;align-items:flex-start;gap:18px;
+}
+.resume-panel p{color:var(--text-muted);max-width:56ch;font-size:15.5px;}
+.resume-split{display:flex;gap:36px;flex-wrap:wrap;width:100%;align-items:stretch;}
+.resume-split>div{flex:1;min-width:260px;}
+.resume-preview-frame{
+  border:1px solid var(--border-strong);border-radius:var(--radius-md);overflow:hidden;
+  min-height:360px;background:#fff;
+}
+.resume-preview-frame iframe{width:100%;height:100%;min-height:360px;border:none;display:block;}
+@media (max-width:640px){.resume-preview-frame{min-height:260px;}.resume-preview-frame iframe{min-height:260px;}}
+
+/* ============ CONTACT ============ */
+.contact-panel{
+  border:1px solid var(--border-strong);border-radius:var(--radius-lg);
+  background:linear-gradient(160deg, var(--bg-panel), var(--bg-panel-2));
+  padding:56px 48px;display:flex;flex-direction:column;gap:28px;
+}
+@media (max-width:640px){.contact-panel{padding:36px 24px;}}
+.contact-title{font-size:clamp(28px,4vw,44px);max-width:14ch;}
+.contact-rows{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+@media (max-width:760px){.contact-rows{grid-template-columns:1fr;}}
+.contact-row{display:flex;flex-direction:column;gap:6px;}
+.contact-row .cr-label{font-family:var(--font-mono);font-size:12px;color:var(--text-faint);}
+.contact-row .cr-value{font-size:15.5px;font-weight:500;display:flex;align-items:center;gap:8px;}
+.copy-btn{
+  border:none;background:transparent;color:var(--text-faint);padding:2px;display:inline-flex;
+}
+.copy-btn:hover{color:var(--accent);}
+.contact-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px;}
+
+footer{border-top:1px solid var(--border);padding:32px 0;}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13.5px;color:var(--text-faint);}
+.footer-inner a{color:var(--text-faint);}
+.footer-inner a:hover{color:var(--text-muted);}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav id="site-nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand"><span class="dot"></span> Mithun KV</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about" data-navlink>About</a></li>
+      <li><a href="#projects" data-navlink>Projects</a></li>
+      <li><a href="#engineering" data-navlink>Engineering</a></li>
+      <li><a href="#skills" data-navlink>Skills</a></li>
+      <li><a href="#achievements" data-navlink>Achievements</a></li>
+      <li><a href="#resume" data-navlink>Resume</a></li>
+      <li><a href="#contact" data-navlink>Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle light and dark theme" title="Toggle theme">
+        <svg id="theme-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.94-9.14c-.44-.06-.9-.1-1.36-.1z"/></svg>
+      </button>
+      <a class="icon-btn" href="https://github.com/Kvmithun" target="_blank" rel="noopener" aria-label="GitHub profile">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.11-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.26 5.67.42.36.78 1.08.78 2.18 0 1.57-.01 2.84-.01 3.23 0 .3.21.66.79.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+      </a>
+      <button class="icon-btn nav-toggle" id="nav-burger" aria-label="Open menu" aria-expanded="false">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path id="burger-path" d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+<!-- ================= HERO ================= -->
+<section id="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-eyebrow"><span class="pulse"></span> Bengaluru, India · Open to AI/ML roles</div>
+      <h1 class="hero-name">Mithun&nbsp;KV</h1>
+      <div class="hero-role">AI/ML ENGINEER</div>
+      <div class="hero-stack">GENERATIVE AI · RAG · MACHINE LEARNING · MLOPS</div>
+      <p class="hero-intro">I build end-to-end AI systems by connecting data science, machine learning, generative AI, and MLOps — from a raw dataset to a deployed, monitored service. Currently going deep on retrieval-augmented generation, agentic systems, and LLM internals.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View projects</a>
+        <a href="./assets/resume.pdf" download="Mithun_KV_Resume.pdf" class="btn btn-outline">Download resume</a>
+        <a href="https://github.com/Kvmithun" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
+        <a href="https://www.linkedin.com/in/mithun-kv-189b42309/" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 480 480">
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M40 0H0V40" fill="none" stroke="var(--border)" stroke-width="1"/>
+          </pattern>
+          <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="var(--accent)"/>
+            <stop offset="100%" stop-color="var(--accent-2)"/>
+          </linearGradient>
+        </defs>
+        <rect width="480" height="480" fill="url(#grid)"/>
+        <g fill="none" stroke="var(--border-strong)" stroke-width="1.5">
+          <path d="M70,120 C140,120 140,120 200,180" />
+          <path d="M70,240 C140,240 150,240 200,220" />
+          <path d="M70,360 C140,360 140,300 200,260" />
+          <path d="M280,200 C330,190 330,150 380,110" />
+          <path d="M280,230 C330,230 330,230 380,230" />
+          <path d="M280,250 C330,260 330,320 380,350" />
+        </g>
+        <g class="flowline" fill="none" stroke="url(#lineGrad)" stroke-width="2" stroke-dasharray="6 8">
+          <path d="M70,120 C140,120 140,120 200,180" />
+          <path d="M70,240 C140,240 150,240 200,220" />
+          <path d="M70,360 C140,360 140,300 200,260" />
+          <path d="M280,200 C330,190 330,150 380,110" />
+          <path d="M280,230 C330,230 330,230 380,230" />
+          <path d="M280,250 C330,260 330,320 380,350" />
+        </g>
+        <g font-family="IBM Plex Mono" font-size="11" fill="var(--text-muted)">
+          <circle cx="60" cy="120" r="7" fill="var(--bg-panel)" stroke="var(--accent-3)" stroke-width="2"/>
+          <text x="30" y="105">data</text>
+          <circle cx="60" cy="240" r="7" fill="var(--bg-panel)" stroke="var(--accent-3)" stroke-width="2"/>
+          <text x="18" y="225">vectors</text>
+          <circle cx="60" cy="360" r="7" fill="var(--bg-panel)" stroke="var(--accent-3)" stroke-width="2"/>
+          <text x="22" y="345">signals</text>
+
+          <circle cx="240" cy="200" r="9" fill="var(--bg-panel)" stroke="var(--accent)" stroke-width="2.4"/>
+          <text x="205" y="188">model</text>
+          <circle cx="240" cy="240" r="9" fill="var(--bg-panel)" stroke="var(--accent)" stroke-width="2.4"/>
+          <text x="196" y="270">RAG</text>
+          <circle cx="240" cy="260" r="6" fill="var(--bg-panel)" stroke="var(--accent)" stroke-width="2"/>
+
+          <circle cx="390" cy="110" r="7" fill="var(--bg-panel)" stroke="var(--accent-2)" stroke-width="2"/>
+          <text x="395" y="106">api</text>
+          <circle cx="390" cy="230" r="7" fill="var(--bg-panel)" stroke="var(--accent-2)" stroke-width="2"/>
+          <text x="395" y="226">deploy</text>
+          <circle cx="390" cy="350" r="7" fill="var(--bg-panel)" stroke="var(--accent-2)" stroke-width="2"/>
+          <text x="395" y="346">monitor</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-kicker">About</div>
+      <h2 class="section-title">Engineering profile</h2>
+    </div>
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="philosophy-card">"I learn the fundamentals, build something, break it, understand why it broke, then go deeper."</div>
+        <div class="about-body">
+          <p>I'm an AI/ML engineer focused on generative AI, RAG, and applied machine learning — I care more about how a system behaves end to end than about any single model in isolation.</p>
+          <p>When something breaks, I debug it, read the documentation, try a few different approaches, and dig for the root cause instead of patching around the error. That habit is what pushed me from notebooks into full pipelines: ingestion, validation, training, serving, and the CI/CD that keeps it running.</p>
+          <p>My work connects data, machine learning, deep learning, generative AI, RAG, backend services, databases, MLOps, and deployment into systems that actually run — not just scripts that produce a number once.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="about-photo-card">
+          <img src="./assets/photo.jpg" alt="Portrait of Mithun KV">
+          <div class="about-photo-tag"><span>MITHUN KV · AI/ML ENGINEER</span><span class="pulse"></span></div>
+        </div>
+        <ul class="focus-list">
+          <li><b>Focus areas</b><span>Generative AI, RAG, machine learning, deep learning, NLP, data science, MLOps</span></li>
+          <li><b>Currently learning</b><span>RAG evaluation, AI agents, LangGraph, MCP, multi-agent systems, LLM internals, fine-tuning, PEFT, LLM security, guardrails, observability</span></li>
+          <li><b>Role</b><span>AI/ML Engineer — Generative AI &amp; RAG</span></li>
+        </ul>
+        <div class="edu-line">
+          <div class="school">Presidency University</div>
+          <div class="meta">B.Tech, Computer Science Engineering — Data Science</div>
+          <div class="meta">Aug 2023 – Aug 2027 · CGPA 7.5 / 10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ================= ENGINEERING (Journey + Architecture + GenAI + MLOps) ================= -->
+<section id="engineering">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-kicker">Engineering</div>
+      <h2 class="section-title">How the pieces connect</h2>
+      <p class="section-sub">The path I've taken, how I reason about GenAI systems, how the two most complex projects are architected, and how I take a model past a notebook into production.</p>
+    </div>
+
+    <!-- Journey -->
+    <h3 style="font-size:19px;margin-bottom:24px;">Learning journey</h3>
+    <div class="journey-track reveal" id="journey-track"></div>
+  </div>
+
+  <div class="wrap" style="margin-top:88px;">
+    <h3 style="font-size:19px;margin-bottom:8px;">GenAI &amp; LLM engineering</h3>
+    <p class="section-sub" style="margin-bottom:36px;">Four areas that fit together into one practice, not a list of buzzwords.</p>
+    <div class="hub-wrap reveal">
+      <div class="hub-center">GenAI / LLM<br>Engineering</div>
+      <div class="hub-clusters" id="hub-clusters"></div>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top:88px;">
+    <h3 style="font-size:19px;margin-bottom:8px;">Two systems, end to end</h3>
+    <p class="section-sub" style="margin-bottom:36px;">Click a step to see what happens at that stage.</p>
+    <div class="arch-grid" id="arch-grid"></div>
+  </div>
+
+  <div class="wrap" style="margin-top:88px;">
+    <h3 style="font-size:19px;margin-bottom:8px;">MLOps — past the notebook</h3>
+    <p class="section-sub" style="margin-bottom:36px;">A model isn't done when it scores well offline. This is the path I take to get it running, versioned, and monitored.</p>
+    <div class="pipeline-scroll reveal">
+      <div class="pipeline" id="pipeline"></div>
+    </div>
+    <div class="pipeline-examples" id="pipeline-examples"></div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-kicker">Projects</div>
+      <h2 class="section-title">Featured work</h2>
+      <p class="section-sub">Seven systems that best show the range — from a deployed MLOps pipeline to a RAG assistant to a civic-tech platform.</p>
+    </div>
+    <div id="featured-list"></div>
+  </div>
+
+  <div class="wrap" style="margin-top:96px;">
+    <div class="section-head reveal" style="margin-bottom:32px;">
+      <div class="section-kicker">Explorer</div>
+      <h2 class="section-title">All 17 projects</h2>
+    </div>
+    <div class="explorer-filters" id="explorer-filters"></div>
+    <div id="skill-filter-banner">
+      <span id="skill-filter-text"></span>
+      <button class="btn btn-ghost btn-sm" id="clear-skill-filter">Clear filter ×</button>
+    </div>
+    <div class="explorer-grid" id="explorer-grid"></div>
+    <p class="explorer-empty" id="explorer-empty" style="display:none;">No projects use this combination — try a different filter.</p>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-kicker">Skills</div>
+      <h2 class="section-title">Technical domains</h2>
+      <p class="section-sub">Organized by where each skill is actually used — not a percentage bar. Click any tag to see the projects it shows up in.</p>
+    </div>
+    <div class="skills-grid" id="skills-grid"></div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ================= ACHIEVEMENTS ================= -->
+<section id="achievements">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-kicker">Achievements</div>
+      <h2 class="section-title">Recognition</h2>
+    </div>
+    <div class="ach-grid reveal">
+      <div class="ach-card">
+        <div class="ach-rank">3rd Place</div>
+        <p><strong style="color:var(--text);">Tech Biz Hackathon</strong></p>
+        <p>Placed third for a build-under-pressure engineering challenge.</p>
+      </div>
+      <div class="ach-card">
+        <div class="ach-rank">Selected</div>
+        <p><strong style="color:var(--text);">Dayananda Sagar DevHack 2.0</strong></p>
+        <p>Selected to participate in this national-level hackathon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ================= RESUME ================= -->
+<section id="resume">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-kicker">Resume</div>
+      <h2 class="section-title">The short version, on paper</h2>
+    </div>
+    <div class="resume-panel reveal">
+      <div class="resume-split">
+        <div>
+          <p>The full resume — summary, stack, and the projects that best represent production-style engineering work — as a single PDF.</p>
+          <div class="contact-actions">
+            <a href="./assets/resume.pdf" target="_blank" rel="noopener" class="btn btn-primary">View resume</a>
+            <a href="./assets/resume.pdf" download="Mithun_KV_Resume.pdf" class="btn btn-outline">Download PDF</a>
+          </div>
+        </div>
+        <div class="resume-preview-frame">
+          <iframe src="./assets/resume.pdf" title="Mithun KV — resume preview" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-panel reveal">
+      <div>
+        <div class="section-kicker">Contact</div>
+        <h2 class="contact-title">Let's build something.</h2>
+      </div>
+      <div class="contact-rows">
+        <div class="contact-row">
+          <span class="cr-label">EMAIL</span>
+          <span class="cr-value">kvmithun1234@gmail.com
+            <button class="copy-btn" data-copy="kvmithun1234@gmail.com" aria-label="Copy email">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            </button>
+          </span>
+        </div>
+        <div class="contact-row">
+          <span class="cr-label">PHONE</span>
+          <span class="cr-value">+91 6361916073
+            <button class="copy-btn" data-copy="+916361916073" aria-label="Copy phone number">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            </button>
+          </span>
+        </div>
+        <div class="contact-row">
+          <span class="cr-label">LOCATION</span>
+          <span class="cr-value">Bengaluru, Karnataka, India</span>
+        </div>
+      </div>
+      <div class="contact-actions">
+        <a href="mailto:kvmithun1234@gmail.com" class="btn btn-primary">Email me</a>
+        <a href="https://github.com/Kvmithun" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
+        <a href="https://www.linkedin.com/in/mithun-kv-189b42309/" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 Mithun KV. Bengaluru, India.</span>
+    <a href="#hero">Back to top ↑</a>
+  </div>
+</footer>
+
+<div id="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<script>
+/* ============================================================
+   DATA
+============================================================ */
+const CATS = {
+  ml: 'Data Science / ML',
+  mlops: 'MLOps / Deployment',
+  genai: 'GenAI / LLM / RAG',
+  hack: 'Hackathons',
+  found: 'Python / Foundations'
+};
+
+const projects = [
+  {
+    id:'insureflow', name:'InsureFlow', cat:'mlops', featured:true,
+    tagline:'End-to-end MLOps insurance prediction system',
+    github:'https://github.com/Kvmithun/',
+    tech:['Python','Scikit-learn','MongoDB','FastAPI','Docker','AWS S3','AWS ECR','AWS EC2','GitHub Actions'],
+    desc:'A vehicle-insurance cross-sell prediction system built around a full ML/MLOps workflow — from raw records in MongoDB to a containerized prediction service running on EC2.',
+    flow:['MongoDB data ingestion','Schema validation','Feature engineering & scaling','SMOTEENN for class imbalance','Random Forest training & evaluation','Model artifacts → S3','Dockerized FastAPI service','Push to AWS ECR','Deploy to AWS EC2','GitHub Actions CI/CD (self-hosted EC2 runner)'],
+    features:['MongoDB ingestion','Schema validation','Feature engineering','SMOTEENN','Random Forest','Accuracy / precision / recall / F1','FastAPI prediction service','Dockerization','S3 model artifacts','Self-hosted CI/CD runner'],
+    status:'Deployed pipeline, EC2 + CI/CD'
+  },
+  {
+    id:'yt-reviser', name:'YouTube Reviser', cat:'genai', featured:true,
+    tagline:'RAG-based video revision assistant',
+    github:'https://github.com/Kvmithun/yt-reviser',
+    tech:['Python','YouTube Transcript API','Argos Translate','Sentence Transformers','Qdrant','Groq'],
+    desc:'Turns a Hindi-language YouTube playlist into an English, queryable knowledge base — pulling transcripts, translating and chunking them, embedding into Qdrant, and answering questions with retrieved, timestamped context.',
+    flow:['Select videos from playlist','Extract Hindi transcripts','Translate Hindi → English','Chunk with timestamp preservation','Embed with all-MiniLM-L6-v2 (384-dim)','Store in Qdrant, cosine similarity','Retrieve relevant chunks for a query','Ground answer with Groq (openai/gpt-oss-120b)','Return answer + video + timestamp link'],
+    features:['~25 of ~127 playlist videos processed','~1,471 transcript chunks','Qdrant vector search','Timestamped YouTube links in answers','Explicitly says when context is missing'],
+    status:'Working RAG pipeline'
+  },
+  {
+    id:'ai-candidate-rep', name:'AI Candidate Representative', cat:'genai', featured:true,
+    tagline:'An AI recruiter that answers questions about me, grounded in my real profile',
+    github:'https://github.com/Kvmithun/ai-portfolio',
+    tech:['Python','Flask','Groq API','Pydantic','HTML/CSS/JS'],
+    desc:'A structured-profile-grounded assistant that fields recruiter questions, compares my background against a pasted job description, and returns a match score with reasoning.',
+    flow:['Load structured candidate profile','Receive question or JD','Maintain conversation context','JD analysis: skill match, gaps, strengths','Pydantic-validated structured response','Grounded, guarded answer returned'],
+    features:['JD analysis & skill matching','Match score & hiring recommendation','Conversation memory','Streaming responses','Guardrails against ungrounded answers','Modular Flask backend'],
+    status:'Working prototype'
+  },
+  {
+    id:'ai-resume-parser', name:'AI Resume Parser & Candidate Matching', cat:'genai', featured:true,
+    tagline:'Resume parsing and JD matching with structured extraction',
+    github:'https://github.com/Kvmithun/Ai_resume_parser',
+    tech:['Python','Groq API','Pydantic','PyPDF','python-docx','Flask'],
+    desc:'Parses resumes from PDF or DOCX into a structured candidate profile, then scores and ranks candidates against a job description.',
+    flow:['Upload resume (PDF/DOCX)','Extract text','LLM extraction of structured fields','Pydantic validation','Parse job description','Match candidate profile vs JD','Score and rank candidates'],
+    features:['PDF & DOCX parsing','Structured extraction via Pydantic','JD analysis','Match scoring','Candidate ranking'],
+    status:'Working prototype'
+  },
+  {
+    id:'breathesmart', name:'BreatheSmart', cat:'hack', featured:true,
+    tagline:'Citizen air-quality reporting and validation platform',
+    github:'https://github.com/Kvmithun/breathe_smart_',
+    tech:['React 18','Vite','Tailwind','Flask','SQLAlchemy','OpenCV','PyTorch','Transformers'],
+    desc:'A full-stack platform where citizens report pollution with photo evidence, get real-time AQI for their location, and government accounts validate submissions — with automated image checks to catch duplicates and low-quality reports.',
+    flow:['Citizen uploads report + photo + geolocation','OpenCV + CLIP-assisted image verification','SHA-256 duplicate detection','Real-time AQI lookup by lat/lng','Clinical AQI guidance + PDF fact sheet','Government review queue','Validated reports → leaderboard & rewards'],
+    features:['Citizen & government roles','Real-time AQI by coordinates','PDF fact sheets (ReportLab)','AI-assisted image verification','Duplicate detection','Leaderboard & rewards'],
+    status:'Full-stack build — not yet production-hardened',
+    note:'Not overstated as production-ready: auth hashing, secrets management and tests are still on the roadmap.'
+  },
+  {
+    id:'microstream-pay', name:'MicroStream Pay', cat:'hack', featured:true,
+    tagline:'Prepaid micropayment streaming platform on Algorand',
+    github:'https://github.com/Kvmithun/microstream_pay',
+    tech:['React','Flask','MongoDB','JWT','Algorand','PyTeal','Pera Wallet'],
+    desc:'A hackathon build demonstrating per-second, escrow-based micropayments for streaming video, settled on the Algorand TestNet.',
+    flow:['Viewer signs up, deposits to wallet','Funds held in escrow smart contract (PyTeal/TEAL)','Per-second deduction while watching','Creator earnings accrue in real time','Creator claims earnings from dashboard'],
+    features:['JWT authentication','Escrow smart contract','Per-second watch deduction','Creator claim dashboard','Watchlist, explore, profile pages'],
+    status:'Demo on Algorand TestNet',
+    note:'A TestNet demo, not production financial infrastructure. App ID 758498032.'
+  },
+  {
+    id:'jan-suvidha', name:'Jan Suvidha', cat:'genai', featured:true,
+    tagline:'AI welfare-scheme assistance platform for citizens',
+    github:'https://github.com/Kvmithun/jana_suivida',
+    tech:['Django','Flask','MongoDB','Google Gemini API'],
+    desc:'A civic-tech platform that walks a citizen through a questionnaire and recommends government welfare schemes they may be eligible for, with an admin dashboard for oversight.',
+    flow:['Citizen completes eligibility questionnaire','Flask AI service (Gemini) analyzes responses','Scheme recommendations returned','Admin dashboard reviews & manages','Reminders / SMS-related functionality'],
+    features:['Eligibility analysis','Scheme recommendations','Admin login & dashboard','Reminders','Separate Django app + Flask AI service'],
+    status:'Working prototype'
+  },
+  {
+    id:'multi-disease', name:'Multiple Disease Prediction', cat:'ml',
+    tagline:'Streamlit app predicting three diseases from clinical inputs',
+    github:'https://github.com/Kvmithun/Multiple_Disease_Prediction',
+    tech:['Python','Streamlit','Scikit-learn','NumPy'],
+    desc:'A multi-page Streamlit app with separate prediction forms for diabetes, heart disease, and Parkinson\u2019s, using pretrained SVM and logistic regression models.',
+    flow:['Select disease from menu','Fill numeric clinical inputs','Load pretrained .sav model','Return prediction'],
+    features:['SVM for Parkinson\u2019s & diabetes','Logistic regression for heart disease','Multi-page interface','Numeric input validation'],
+    status:'Educational demo',
+    note:'Built for learning — not presented as a medical diagnosis system.'
+  },
+  {
+    id:'iris', name:'Exploring Iris Dataset', cat:'ml',
+    tagline:'Exploratory data analysis on the classic Iris dataset',
+    github:'https://github.com/Kvmithun/Exploring_iris_datset',
+    tech:['Python','NumPy','Pandas','Matplotlib','Seaborn','Scikit-learn'],
+    desc:'A foundational EDA project: structure checks, summary statistics, and visual analysis of petal/sepal relationships across species.',
+    flow:['Load dataset from Scikit-learn','Convert to DataFrame, inspect shape','Summary statistics & missing-value check','Map targets to species','Pair plots, KDE, histograms, heatmap'],
+    features:['Pair plots','Correlation heatmap','Petal length vs width analysis','Count & scatter plots'],
+    status:'Learning project'
+  },
+  {
+    id:'knn-glass', name:'KNN Classification — Glass Dataset', cat:'ml',
+    tagline:'Finding the right K and visualizing decision boundaries',
+    github:'https://github.com/Kvmithun/Knn_using_glassDataset',
+    tech:['Python','Pandas','NumPy','Scikit-learn','Matplotlib','mlxtend'],
+    desc:'A KNN classification project on the Glass Identification dataset, sweeping K from 1 to 50 to find the best train/test tradeoff.',
+    flow:['Explore dataset','Split features/target, train/test split','StandardScaler','Sweep K=1..50, track accuracy','Select best K','Confusion matrix & classification report','Visualize decision boundary (first 2 features)'],
+    features:['Accuracy vs K visualization','Confusion matrix','Decision boundary plot','Bias/variance discussion'],
+    status:'Learning project'
+  },
+  {
+    id:'salary', name:'Employee Salary Prediction', cat:'ml',
+    tagline:'Linear & polynomial regression on salary data',
+    github:'https://github.com/Kvmithun/Employee_salary_predictor',
+    tech:['Python','Pandas','NumPy','Matplotlib','Scikit-learn'],
+    desc:'Predicts salary from age, gender, degree, job title, and experience using linear regression and degree-2 polynomial regression, compared side by side.',
+    flow:['EDA, missing/duplicate handling','Categorical encoding, StandardScaler','Train/test split','Fit linear regression','Fit polynomial regression (deg. 2)','Compare via MAE/MSE/RMSE/R²/adj. R²'],
+    features:['Actual vs predicted plots','Residual plots','Model comparison table'],
+    status:'Learning project'
+  },
+  {
+    id:'mlflow-exp', name:'Experimentation using MLflow', cat:'mlops',
+    tagline:'Tracking, autologging, and tuning across two classification tasks',
+    github:'https://github.com/Kvmithun/Experimentation-using-MLflow',
+    tech:['Python','Scikit-learn','MLflow','DagsHub','GridSearchCV'],
+    desc:'Demonstrates manual MLflow tracking, autologging, remote tracking via DagsHub, and nested-run hyperparameter search across a wine and a breast-cancer classification task.',
+    flow:['Manual tracking: params, metrics, artifacts, models','MLflow autologging','DagsHub remote tracking','GridSearchCV: n_estimators × max_depth (12 combos)','Nested parent/child MLflow runs','Log train/test datasets'],
+    features:['Confusion matrices logged as artifacts','Nested runs for grid search','Remote tracking on DagsHub'],
+    status:'Learning project'
+  },
+  {
+    id:'dvc', name:'Data Versioning using DVC', cat:'mlops',
+    tagline:'Version-controlling datasets alongside Git',
+    github:'https://github.com/Kvmithun/END_END_MLpipeline_using_DVC_andAWS_S3',
+    tech:['Python','Git','DVC'],
+    desc:'Shows how Git tracks code and DVC metadata while a remote store holds the actual dataset objects, across three dataset versions.',
+    flow:['dvc init','dvc remote add -d myremote (S3-style)','dvc add data/','dvc commit / dvc push','dvc status / dvc checkout across V1–V3'],
+    features:['Three tracked dataset versions','Git + DVC metadata split','Remote-backed dataset storage'],
+    status:'Learning project',
+    note:'Uses a local S3-style remote, not an actual AWS S3 bucket.'
+  },
+  {
+    id:'smart-health', name:'Smart Health Connect AI', cat:'genai',
+    tagline:'Educational healthcare triage assistant',
+    github:'https://github.com/Kvmithun/Ai_assistant/tree/main',
+    tech:['Flask','Google Gemini 2.5 Flash','Function Calling'],
+    desc:'A prototype assistant that offers preliminary triage-style guidance and can call a mock hospital-recommendation tool via Gemini function calling.',
+    flow:['User message → Flask /chat','Gemini 2.5 Flash reasons over input','Function call to hospital-recommendation tool','[TRIAGE] / [ADVICE] / [REFERRAL] response','Response rendered in chat UI'],
+    features:['Symptom triage prototype','Gemini function calling','Mock location-based hospital search'],
+    status:'Educational prototype',
+    note:'Not a medical diagnosis or treatment system.'
+  },
+  {
+    id:'nlp-tkinter', name:'NLP Tkinter Application', cat:'found',
+    tagline:'Desktop NLP tool for NER and sentiment analysis',
+    github:'https://github.com/Kvmithun/nlp-tkinter-app',
+    tech:['Python','Tkinter','REST API','JSON'],
+    desc:'A desktop application wrapping named-entity recognition and sentiment analysis behind a Tkinter interface, backed by a custom database layer.',
+    flow:['User enters text in Tkinter UI','Call NLP API','Return NER / sentiment result','Store in local database layer'],
+    features:['Named entity recognition','Sentiment analysis','Custom database layer'],
+    status:'Foundations project'
+  },
+  {
+    id:'calculator', name:'Simple Calculator', cat:'found',
+    tagline:'A class-based calculator with persistent history',
+    github:'https://github.com/Kvmithun/calculator_using_py',
+    tech:['Python','OOP','File Handling'],
+    desc:'An OOP calculator that keeps a running calculation history and can save or load that history to a text file.',
+    flow:['Take arithmetic input','Compute result, handle errors','Append to in-memory history','Save/load history to text file'],
+    features:['Basic arithmetic','Calculation history','Save/load history from file'],
+    status:'Foundations project'
+  }
+];
+
+const featuredOrder = ['insureflow','yt-reviser','ai-candidate-rep','ai-resume-parser','breathesmart','microstream-pay','jan-suvidha'];
+
+const journeyStages = [
+  {label:'Foundations', items:['Python','OOP','NumPy','Pandas','Matplotlib','Seaborn','Statistics']},
+  {label:'Core ML & DL', items:['Machine Learning','Deep Learning','Transformers','NLP']},
+  {label:'Generative AI & RAG', items:['Generative AI','RAG','RAG Evaluation','Agents','Tool Use','LangGraph']},
+  {label:'Advanced systems', items:['LLM Internals','Fine-Tuning','PEFT','LLM Security','Guardrails','Observability']}
+];
+const currentFrontier = ['RAG','RAG Evaluation','Agents','Tool Use','LangGraph','MCP','Multi-Agent Systems','LLM Internals','Transformers','Fine-Tuning','PEFT','LLM Security','Guardrails','Observability'];
+
+const skillDomains = [
+  {name:'Programming', items:['Python','SQL']},
+  {name:'AI / Machine Learning', items:['Scikit-learn','TensorFlow','Deep Learning','ANN','CNN','RNN','LSTM','GRU','Transformers','NLP']},
+  {name:'Generative AI / LLM', items:['LLM APIs','Prompt Engineering','Structured Outputs','Pydantic','RAG','RAG Evaluation','Embeddings','Semantic Search','Qdrant','Agents','Tool Use','LangGraph','MCP','Multi-Agent Systems','Observability','Guardrails','LLM Security','Fine-Tuning','Deployment']},
+  {name:'Data Science', items:['Pandas','NumPy','Matplotlib','Seaborn','Statistics']},
+  {name:'Backend', items:['FastAPI','Flask']},
+  {name:'MLOps / Cloud', items:['Docker','AWS S3','AWS ECR','AWS EC2','GitHub Actions','CI/CD','DVC','MLflow']},
+  {name:'Databases', items:['MongoDB','MySQL']},
+  {name:'Developer Tools', items:['Git','GitHub','Jupyter','VS Code','PyCharm']},
+  {name:'Core Computer Science', items:['DSA','OOP','DBMS','Operating Systems','Computer Networks']}
+];
+
+const hubClusters = [
+  {name:'Retrieval', items:['RAG','RAG Evaluation','Embeddings','Semantic Search','Qdrant']},
+  {name:'Agentic systems', items:['Agents','Tool Use','LangGraph','MCP','Multi-Agent Systems']},
+  {name:'Model foundations', items:['LLM Internals','Transformers','Fine-Tuning','PEFT']},
+  {name:'Safety & ops', items:['LLM Security','Guardrails','Observability','Structured Outputs']}
+];
+
+const architectures = [
+  {
+    name:'YouTube Reviser', sub:'RAG-based video revision assistant',
+    steps:[
+      {t:'Select videos', d:'Roughly 25 videos are pulled from a ~127-video Hindi playlist as the working corpus.'},
+      {t:'Translate transcripts', d:'Hindi transcripts are extracted via the YouTube Transcript API and translated to English with Argos Translate.'},
+      {t:'Chunk + timestamp', d:'Transcripts are chunked while preserving start/end timestamps, producing about 1,471 chunks.'},
+      {t:'Embed', d:'Each chunk is embedded with sentence-transformers/all-MiniLM-L6-v2 (384 dimensions).'},
+      {t:'Store in Qdrant', d:'Embeddings and payload (text, video id, title, url, timestamps) are stored in a Qdrant collection with cosine similarity.'},
+      {t:'Retrieve', d:'A query is embedded and matched against the collection to pull the most relevant chunks as context.'},
+      {t:'Generate', d:'Groq (openai/gpt-oss-120b) generates an answer grounded strictly in the retrieved context.'},
+      {t:'Return with source', d:'The answer is returned with the source video, exact timestamp, and a direct timestamped YouTube link.'}
+    ]
+  },
+  {
+    name:'InsureFlow', sub:'End-to-end MLOps insurance prediction system',
+    steps:[
+      {t:'Ingest', d:'Raw records are pulled from MongoDB as the system of record.'},
+      {t:'Validate', d:'Incoming data is checked against a defined schema before it enters the pipeline.'},
+      {t:'Engineer features', d:'Features are engineered and scaled; SMOTEENN corrects for class imbalance in the target.'},
+      {t:'Train & evaluate', d:'A Random Forest model is trained and evaluated on accuracy, precision, recall, and F1.'},
+      {t:'Store artifacts', d:'Model artifacts are pushed to AWS S3 for versioned storage.'},
+      {t:'Containerize', d:'A FastAPI prediction service wraps the model and is built into a Docker image.'},
+      {t:'Ship to ECR', d:'The image is pushed to AWS ECR.'},
+      {t:'Deploy to EC2', d:'The container is deployed and served from an AWS EC2 instance.'},
+      {t:'Automate', d:'GitHub Actions, running on a self-hosted EC2 runner, drives the CI/CD for the whole pipeline.'}
+    ]
+  }
+];
+
+const pipelineStages = [
+  {name:'Data', tech:'MongoDB'},
+  {name:'Training', tech:'Scikit-learn'},
+  {name:'Experiment tracking', tech:'MLflow'},
+  {name:'Versioning', tech:'DVC'},
+  {name:'Packaging', tech:'Docker'},
+  {name:'API', tech:'FastAPI'},
+  {name:'Containerization', tech:'Docker'},
+  {name:'Cloud', tech:'AWS S3 / ECR / EC2'},
+  {name:'CI/CD', tech:'GitHub Actions'},
+  {name:'Deployment', tech:'AWS EC2'},
+  {name:'Monitoring', tech:'—'}
+];
+
+/* ============================================================
+   RENDER: JOURNEY
+============================================================ */
+const journeyTrack = document.getElementById('journey-track');
+journeyStages.forEach((stage, i)=>{
+  const wrap = document.createElement('div');
+  wrap.className = 'journey-stage';
+  const items = stage.items.map(it=>{
+    const isCurrent = currentFrontier.includes(it);
+    return `<div class="jitem ${isCurrent?'current':''}"><span class="cdot"></span>${it}</div>`;
+  }).join('<span class="jarrow">→</span>');
+  wrap.innerHTML = `<div class="stage-label"><span class="stage-num">0${i+1}</span> ${stage.label}</div><div class="stage-items">${items}</div>`;
+  journeyTrack.appendChild(wrap);
+});
+
+/* ============================================================
+   RENDER: HUB CLUSTERS
+============================================================ */
+const hubEl = document.getElementById('hub-clusters');
+hubEl.innerHTML = hubClusters.map(c=>`
+  <div class="cluster">
+    <h5>${c.name}</h5>
+    <div class="skill-tags">${c.items.map(i=>`<span class="chip">${i}</span>`).join('')}</div>
+  </div>
+`).join('');
+
+/* ============================================================
+   RENDER: ARCHITECTURE
+============================================================ */
+const archGrid = document.getElementById('arch-grid');
+architectures.forEach((arch, ai)=>{
+  const card = document.createElement('div');
+  card.className = 'arch-card';
+  card.innerHTML = `
+    <h4>${arch.name}</h4>
+    <span class="arch-sub">${arch.sub}</span>
+    <div class="arch-steps">
+      ${arch.steps.map((s,si)=>`<button class="arch-step" data-arch="${ai}" data-step="${si}">${si+1}. ${s.t}</button>`).join('')}
+    </div>
+    <div class="arch-detail" id="arch-detail-${ai}"></div>
+  `;
+  archGrid.appendChild(card);
+});
+archGrid.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.arch-step');
+  if(!btn) return;
+  const ai = btn.dataset.arch, si = +btn.dataset.step;
+  const detail = document.getElementById('arch-detail-'+ai);
+  const allSteps = btn.parentElement.querySelectorAll('.arch-step');
+  const wasOpen = btn.classList.contains('open');
+  allSteps.forEach(b=>b.classList.remove('open'));
+  if(wasOpen){ detail.classList.remove('show'); detail.textContent=''; return; }
+  btn.classList.add('open');
+  detail.textContent = architectures[ai].steps[si].d;
+  detail.classList.add('show');
+});
+
+/* ============================================================
+   RENDER: PIPELINE
+============================================================ */
+const pipelineEl = document.getElementById('pipeline');
+pipelineEl.innerHTML = pipelineStages.map((s,i)=>`
+  ${i>0 ? '<div class="pconnector"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M0 7h17M12 2l6 5-6 5"/></svg></div>' : ''}
+  <div class="pstage"><div class="ps-node">${s.name}</div><div class="ps-tech">${s.tech}</div></div>
+`).join('');
+document.getElementById('pipeline-examples').innerHTML = `
+  <a href="#" class="chip chip-btn" data-open-project="insureflow">→ see it in InsureFlow</a>
+  <a href="#" class="chip chip-btn" data-open-project="mlflow-exp">→ see it in Experimentation using MLflow</a>
+  <a href="#" class="chip chip-btn" data-open-project="dvc">→ see it in Data Versioning using DVC</a>
+`;
+
+/* ============================================================
+   RENDER: FEATURED PROJECTS
+============================================================ */
+const featuredList = document.getElementById('featured-list');
+featuredOrder.forEach((id, i)=>{
+  const p = projects.find(x=>x.id===id);
+  const block = document.createElement('div');
+  block.className = 'feature-block reveal';
+  block.innerHTML = `
+    <div>
+      <div class="feature-index">0${i+1} / 0${featuredOrder.length}</div>
+      <h3 class="feature-name">${p.name}</h3>
+      <span class="feature-cat">${CATS[p.cat]}</span>
+      <p class="feature-desc">${p.desc}</p>
+      ${p.note ? `<div class="feature-note">${p.note}</div>` : ''}
+      <div class="feature-links">
+        <a class="btn btn-outline btn-sm" href="${p.github}" target="_blank" rel="noopener">View on GitHub</a>
+        <button class="btn btn-ghost btn-sm" data-open-project="${p.id}">Full case study</button>
+      </div>
+    </div>
+    <div class="feature-panel">
+      <div class="fp-head"><span>PIPELINE</span><span>${p.status}</span></div>
+      <div class="fp-flow">
+        ${p.flow.map(f=>`<div class="flow-step"><span class="fs-dot"></span>${f}</div>`).join('')}
+      </div>
+      <div class="fp-tech">${p.tech.map(t=>`<span class="chip">${t}</span>`).join('')}</div>
+    </div>
+  `;
+  featuredList.appendChild(block);
+});
+
+/* ============================================================
+   RENDER: EXPLORER
+============================================================ */
+const explorerFilters = document.getElementById('explorer-filters');
+const explorerGrid = document.getElementById('explorer-grid');
+const explorerEmpty = document.getElementById('explorer-empty');
+let activeCat = 'all';
+let activeSkill = null;
+
+function renderFilters(){
+  const cats = [['all','All projects'], ...Object.entries(CATS)];
+  explorerFilters.innerHTML = cats.map(([key,label])=>
+    `<button class="filter-btn ${activeCat===key?'active':''}" data-cat="${key}">${label}</button>`
+  ).join('');
+}
+function renderExplorer(){
+  let list = projects;
+  if(activeCat!=='all') list = list.filter(p=>p.cat===activeCat);
+  if(activeSkill) list = list.filter(p=>p.tech.some(t=>t.toLowerCase()===activeSkill.toLowerCase()));
+  explorerGrid.innerHTML = list.map(p=>`
+    <button class="pcard" data-open-project="${p.id}">
+      <div class="pcard-top">
+        <span class="pcard-cat">${CATS[p.cat]}</span>
+      </div>
+      <div class="pcard-name">${p.name}</div>
+      <div class="pcard-desc">${p.tagline}</div>
+      <div class="pcard-tech">${p.tech.slice(0,4).map(t=>`<span>${t}</span>`).join(' · ')}</div>
+      <div class="pcard-status">${p.status}</div>
+    </button>
+  `).join('');
+  explorerEmpty.style.display = list.length ? 'none' : 'block';
+}
+renderFilters();
+renderExplorer();
+explorerFilters.addEventListener('click', e=>{
+  const btn = e.target.closest('.filter-btn');
+  if(!btn) return;
+  activeCat = btn.dataset.cat;
+  renderFilters();
+  renderExplorer();
+});
+
+/* ============================================================
+   RENDER: SKILLS
+============================================================ */
+const skillsGrid = document.getElementById('skills-grid');
+skillsGrid.innerHTML = skillDomains.map(d=>`
+  <div class="skill-domain">
+    <h4>${d.name}</h4>
+    <div class="skill-tags">${d.items.map(i=>`<span class="chip chip-btn" data-skill="${i}">${i}</span>`).join('')}</div>
+  </div>
+`).join('');
+
+const skillBanner = document.getElementById('skill-filter-banner');
+const skillBannerText = document.getElementById('skill-filter-text');
+document.getElementById('clear-skill-filter').addEventListener('click', ()=>{
+  activeSkill = null;
+  skillBanner.classList.remove('show');
+  document.querySelectorAll('[data-skill]').forEach(el=>el.classList.remove('active'));
+  renderExplorer();
+});
+document.addEventListener('click', e=>{
+  const chip = e.target.closest('[data-skill]');
+  if(!chip) return;
+  const skill = chip.dataset.skill;
+  document.querySelectorAll('[data-skill]').forEach(el=>el.classList.toggle('active', el.dataset.skill===skill));
+  activeSkill = skill;
+  activeCat = 'all';
+  renderFilters();
+  skillBannerText.textContent = `Showing projects using "${skill}"`;
+  skillBanner.classList.add('show');
+  renderExplorer();
+  document.getElementById('projects').scrollIntoView({behavior:'smooth', block:'nearest'});
+  setTimeout(()=>window.scrollBy({top:0}), 0);
+  document.getElementById('explorer-grid').scrollIntoView({behavior:'smooth', block:'center'});
+});
+
+/* ============================================================
+   MODAL
+============================================================ */
+const overlay = document.getElementById('modal-overlay');
+const modalContent = document.getElementById('modal-content');
+function openProject(id){
+  const p = projects.find(x=>x.id===id);
+  if(!p) return;
+  modalContent.innerHTML = `
+    <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+    <span class="m-cat">${CATS[p.cat]} · ${p.status}</span>
+    <h3>${p.name}</h3>
+    <div class="modal-section">
+      <h4>Overview</h4>
+      <p>${p.desc}</p>
+      ${p.note ? `<div class="feature-note" style="margin-top:14px;">${p.note}</div>` : ''}
+    </div>
+    <div class="modal-section">
+      <h4>Workflow</h4>
+      <div class="modal-flow">${p.flow.map((f,i)=>`<span>${f}</span>${i<p.flow.length-1?'<span class="arrow">→</span>':''}`).join('')}</div>
+    </div>
+    <div class="modal-section">
+      <h4>Key features</h4>
+      <ul class="modal-feat-list">${p.features.map(f=>`<li>${f}</li>`).join('')}</ul>
+    </div>
+    <div class="modal-section">
+      <h4>Stack</h4>
+      <div class="skill-tags">${p.tech.map(t=>`<span class="chip">${t}</span>`).join('')}</div>
+    </div>
+    <div class="modal-actions">
+      <a class="btn btn-primary" href="${p.github}" target="_blank" rel="noopener">View on GitHub</a>
+      <button class="btn btn-outline" id="modal-close-2">Close</button>
+    </div>
+  `;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  document.getElementById('modal-close-2').addEventListener('click', closeModal);
+}
+function closeModal(){
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+overlay.addEventListener('click', e=>{ if(e.target===overlay) closeModal(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+document.addEventListener('click', e=>{
+  const t = e.target.closest('[data-open-project]');
+  if(!t) return;
+  e.preventDefault();
+  openProject(t.dataset.openProject);
+});
+
+/* ============================================================
+   THEME TOGGLE
+============================================================ */
+const themeToggle = document.getElementById('theme-toggle');
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  try{ localStorage.setItem('mk-theme', t); }catch(e){}
+}
+(function initTheme(){
+  let saved = null;
+  try{ saved = localStorage.getItem('mk-theme'); }catch(e){}
+  if(saved) applyTheme(saved);
+})();
+themeToggle.addEventListener('click', ()=>{
+  const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  applyTheme(current === 'light' ? 'dark' : 'light');
+});
+
+/* ============================================================
+   NAV: mobile burger + active link highlight
+============================================================ */
+const burger = document.getElementById('nav-burger');
+const navLinks = document.getElementById('nav-links');
+burger.addEventListener('click', ()=>{
+  const open = navLinks.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
+});
+document.querySelectorAll('[data-navlink]').forEach(a=>{
+  a.addEventListener('click', ()=> navLinks.classList.remove('open'));
+});
+
+/* ============================================================
+   COPY BUTTONS
+============================================================ */
+document.querySelectorAll('.copy-btn').forEach(btn=>{
+  btn.addEventListener('click', async ()=>{
+    const val = btn.dataset.copy;
+    try{
+      await navigator.clipboard.writeText(val);
+      const original = btn.innerHTML;
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>';
+      setTimeout(()=>{ btn.innerHTML = original; }, 1400);
+    }catch(e){}
+  });
+});
+
+/* ============================================================
+   SCROLL REVEAL
+============================================================ */
+const revealEls = document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+}else{
+  revealEls.forEach(el=>el.classList.add('in'));
+}
+</script>
+</body>
+</html>
