@@ -185,8 +185,15 @@ section{padding:112px 0;position:relative;}
 }
 .hero-intro{font-size:17.5px;color:var(--text-muted);max-width:52ch;margin-bottom:36px;}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;}
-.hero-visual{position:relative;aspect-ratio:1/1;max-width:480px;margin:0 auto;width:100%;}
-.hero-visual svg{width:100%;height:100%;}
+.hero-visual{position:relative;aspect-ratio:1/1;max-width:480px;margin:0 auto;width:100%;display:grid;place-items:center;}
+.hero-visual svg{position:absolute;inset:0;width:100%;height:100%;}
+.hero-portrait{
+  position:relative;z-index:1;width:58%;aspect-ratio:1/1;object-fit:cover;
+  border-radius:50%;border:5px solid var(--bg-panel);outline:1px solid var(--accent);
+  box-shadow:0 20px 50px -22px rgba(0,0,0,.8);filter:grayscale(25%) contrast(1.04);
+  transition:filter .3s ease, transform .3s ease;
+}
+.hero-visual:hover .hero-portrait{filter:grayscale(0%) contrast(1.02);transform:scale(1.02);}
 
 /* ============ CHIPS / TAGS ============ */
 .chip{
@@ -515,13 +522,14 @@ footer{border-top:1px solid var(--border);padding:32px 0;}
       <p class="hero-intro">I build end-to-end AI systems by connecting data science, machine learning, generative AI, and MLOps — from a raw dataset to a deployed, monitored service. Currently going deep on retrieval-augmented generation, agentic systems, and LLM internals.</p>
       <div class="hero-actions">
         <a href="#projects" class="btn btn-primary">View projects</a>
+        <a href="./assets/resume.pdf" target="_blank" rel="noopener" class="btn btn-outline">View resume</a>
         <a href="./assets/resume.pdf" download="Mithun_KV_Resume.pdf" class="btn btn-outline">Download resume</a>
         <a href="https://github.com/Kvmithun" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
         <a href="https://www.linkedin.com/in/mithun-kv-189b42309/" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
       </div>
     </div>
-    <div class="hero-visual" aria-hidden="true">
-      <svg viewBox="0 0 480 480">
+    <div class="hero-visual">
+      <svg viewBox="0 0 480 480" aria-hidden="true">
         <defs>
           <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
             <path d="M40 0H0V40" fill="none" stroke="var(--border)" stroke-width="1"/>
@@ -570,6 +578,7 @@ footer{border-top:1px solid var(--border);padding:32px 0;}
           <text x="395" y="346">monitor</text>
         </g>
       </svg>
+      <img class="hero-portrait" src="./assets/photo.jpg" alt="Portrait of Mithun KV">
     </div>
   </div>
 </section>
